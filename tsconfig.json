@@ -11,6 +11,11 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
+    "paths": {
+      "ngx-simpli-alert": [
+        "./dist/ngx-simpli-alert"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
