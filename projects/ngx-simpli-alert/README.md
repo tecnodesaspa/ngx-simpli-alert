@@ -1,24 +1,248 @@
 # NgxSimpliAlert
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+Una librería Angular simple y elegante para mostrar alertas modales personalizables con animaciones suaves y múltiples tipos de mensajes.
 
-## Code scaffolding
+![Angular](https://img.shields.io/badge/Angular-18+-red?logo=angular)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-blue?logo=typescript)
+![npm](https://img.shields.io/npm/v/ngx-simpli-alert)
+![License](https://img.shields.io/npm/l/ngx-simpli-alert)
 
-Run `ng generate component component-name --project ngx-simpli-alert` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-simpli-alert`.
-> Note: Don't forget to add `--project ngx-simpli-alert` or else it will be added to the default project in your `angular.json` file. 
+## 🚀 Características
 
-## Build
+- ✅ **Fácil de usar**: Integración simple con solo unas líneas de código
+- 🎨 **Múltiples tipos**: Success, Warning, Danger y Question
+- 🎭 **Animaciones**: Transiciones suaves con CSS animations
+- 📱 **Responsive**: Diseño adaptativo para dispositivos móviles
+- 🔧 **Personalizable**: Títulos, descripciones y botones configurables
+- 🚫 **Sin dependencias**: Solo requiere Angular core y common
+- 🎯 **TypeScript**: Completamente tipado para mejor experiencia de desarrollo
 
-Run `ng build ngx-simpli-alert` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📦 Instalación
 
-## Publishing
+```bash
+npm install ngx-simpli-alert
+```
 
-After building your library with `ng build ngx-simpli-alert`, go to the dist folder `cd dist/ngx-simpli-alert` and run `npm publish`.
+## 📋 Tabla de Compatibilidad de Versiones
 
-## Running unit tests
+| NgxSimpliAlert | Angular | TypeScript | Node.js | Estado |
+|----------------|---------|------------|---------|---------|
+| 18.0.x         | 18.x    | 5.5+       | 18+     | ✅ Actual |
 
-Run `ng test ngx-simpli-alert` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Notas de Compatibilidad
 
-## Further help
+- **Angular 18+**: Soporte completo con todas las características
+- **Angular 17**: Compatible con características principales
+- **Angular 16**: Soporte básico (versión LTS)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🛠️ Configuración
+
+### 1. Importar el servicio
+
+```typescript
+import { NgxSimpliAlertService } from 'ngx-simpli-alert';
+
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html'
+})
+export class ExampleComponent {
+  constructor(private alertService: NgxSimpliAlertService) {}
+}
+```
+
+### 2. Usar en tu componente
+
+```typescript
+showSuccessAlert() {
+  this.alertService.show({
+    title: '¡Éxito!',
+    description: 'La operación se completó correctamente',
+    type: 'success',
+    confirmButtonText: 'Aceptar'
+  });
+}
+
+showConfirmAlert() {
+  this.alertService.show({
+    title: '¿Estás seguro?',
+    description: 'Esta acción no se puede deshacer',
+    type: 'question',
+    confirmButtonText: 'Sí, continuar',
+    cancelButtonText: 'Cancelar'
+  }, 
+  () => {
+    // Acción al confirmar
+    console.log('Confirmado');
+  },
+  () => {
+    // Acción al cancelar
+    console.log('Cancelado');
+  });
+}
+```
+
+## 📋 API Reference
+
+### AlertOptions Interface
+
+| Propiedad | Tipo | Requerido | Descripción |
+|-----------|------|-----------|-------------|
+| `title` | `string` | No | Título principal de la alerta |
+| `description` | `string` | No | Descripción o mensaje de la alerta |
+| `type` | `'success' \| 'danger' \| 'question' \| 'warning'` | No | Tipo de alerta (por defecto: 'success') |
+| `confirmButtonText` | `string` | No | Texto del botón de confirmación |
+| `cancelButtonText` | `string` | No | Texto del botón de cancelación |
+| `isActive` | `boolean` | No | Estado de visibilidad (manejado internamente) |
+
+### NgxSimpliAlertService
+
+#### Métodos
+
+##### `show(options: AlertOptions, onConfirm?: () => void, onCancel?: () => void)`
+
+Muestra una alerta modal con las opciones especificadas.
+
+**Parámetros:**
+- `options`: Configuración de la alerta
+- `onConfirm` (opcional): Callback ejecutado al confirmar
+- `onCancel` (opcional): Callback ejecutado al cancelar
+
+## 🎨 Tipos de Alertas
+
+### Success
+```typescript
+this.alertService.show({
+  title: '¡Operación exitosa!',
+  description: 'Los datos se guardaron correctamente',
+  type: 'success',
+  confirmButtonText: 'Entendido'
+});
+```
+
+### Warning
+```typescript
+this.alertService.show({
+  title: 'Advertencia',
+  description: 'Algunos campos requieren atención',
+  type: 'warning',
+  confirmButtonText: 'Revisar'
+});
+```
+
+### Danger
+```typescript
+this.alertService.show({
+  title: 'Error',
+  description: 'No se pudo completar la operación',
+  type: 'danger',
+  confirmButtonText: 'Intentar de nuevo'
+});
+```
+
+### Question
+```typescript
+this.alertService.show({
+  title: '¿Eliminar elemento?',
+  description: 'Esta acción no se puede deshacer',
+  type: 'question',
+  confirmButtonText: 'Eliminar',
+  cancelButtonText: 'Cancelar'
+}, 
+() => this.deleteItem(),
+() => console.log('Cancelado')
+);
+```
+
+## 🎯 Ejemplos Avanzados
+
+### Alerta con solo título
+```typescript
+this.alertService.show({
+  title: 'Mensaje simple',
+  type: 'success'
+});
+```
+
+### Manejo de promesas
+```typescript
+async confirmAction() {
+  return new Promise((resolve) => {
+    this.alertService.show({
+      title: '¿Continuar?',
+      description: 'Esta acción modificará los datos',
+      type: 'question',
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    },
+    () => resolve(true),
+    () => resolve(false)
+    );
+  });
+}
+
+// Uso
+const confirmed = await this.confirmAction();
+if (confirmed) {
+  // Ejecutar acción
+}
+```
+
+## 🎨 Personalización de Estilos
+
+La librería incluye estilos por defecto, pero puedes sobrescribirlos en tu CSS global:
+
+```css
+/* Personalizar el fondo del modal */
+.alert-background {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Personalizar el contenido de la alerta */
+.alert-content {
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Personalizar botones */
+.alert-content button {
+  border-radius: 8px !important;
+  font-weight: bold !important;
+}
+```
+
+## 📝 Changelog
+
+### v18.0.0 (2025-10-26)
+- 🎉 **Lanzamiento inicial**
+- ✨ Soporte para Angular 18
+- 🎨 4 tipos de alertas (success, warning, danger, question)
+- 🎭 Animaciones CSS suaves
+- 📱 Diseño responsive
+- 🔧 API completa con callbacks
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -am 'Agregar nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 📞 Soporte
+
+Si encuentras algún problema o tienes preguntas:
+
+- Abre un [issue](https://github.com/tecnodesaspa/ngx-simpli-alert/issues)
+- Consulta la documentación
+- Revisa los ejemplos de uso
+
+---
+
+**Desarrollado con ❤️ para la comunidad Angular**
