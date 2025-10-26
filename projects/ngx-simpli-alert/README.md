@@ -2,7 +2,7 @@
 
 Una librería Angular simple y elegante para mostrar alertas modales personalizables con animaciones suaves y múltiples tipos de mensajes.
 
-![Angular](https://img.shields.io/badge/Angular-18+-red?logo=angular)
+![Angular](https://img.shields.io/badge/Angular-19+-red?logo=angular)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-blue?logo=typescript)
 ![npm](https://img.shields.io/npm/v/ngx-simpli-alert)
 ![License](https://img.shields.io/npm/l/ngx-simpli-alert)
@@ -27,13 +27,15 @@ npm install ngx-simpli-alert
 
 | NgxSimpliAlert | Angular | TypeScript | Node.js | Estado |
 |----------------|---------|------------|---------|---------|
-| 18.0.x         | 18.x    | 5.5+       | 18+     | ✅ Actual |
+| 19.0.x         | 19.x    | 5.6+       | 18+     | ✅ Actual |
+| 18.0.x         | 18.x    | 5.5+       | 18+     | 🔄 Mantenimiento |
+| 17.0.x         | 17.x    | 5.2+       | 18+     | 📋 Planificado |
 
 ### Notas de Compatibilidad
 
-- **Angular 18+**: Soporte completo con todas las características
-- **Angular 17**: Compatible con características principales
-- **Angular 16**: Soporte básico (versión LTS)
+- **Angular 19**: ✅ **Versión actual** - Soporte completo con todas las características más recientes, signals estables, y las últimas mejoras de Angular
+- **Angular 18**: 🔄 Compatible con retrocompatibilidad y mantenimiento
+- **Angular 17**: 📋 Soporte planificado para mayor alcance
 
 ## 🛠️ Configuración
 
@@ -213,13 +215,14 @@ La librería incluye estilos por defecto, pero puedes sobrescribirlos en tu CSS 
 
 ## 📝 Changelog
 
-### v18.0.0 (2025-10-26)
+### v19.0.0 (2025-10-26)
 - 🎉 **Lanzamiento inicial**
-- ✨ Soporte para Angular 18
+- ✨ Soporte para Angular 19
 - 🎨 4 tipos de alertas (success, warning, danger, question)
 - 🎭 Animaciones CSS suaves
 - 📱 Diseño responsive
 - 🔧 API completa con callbacks
+- 🚀 Compatibilidad con signals estables
 
 ## 🤝 Contribuir
 
